@@ -11,9 +11,9 @@ console.log(`Running tests against environment: ${testEnv}`);
 function getBaseURL(envName: string) {
   switch (envName) {
     case 'abn':
-      return process.env.BASE_URL_ABN || 'https://abn.example.com';
+      return process.env.BASE_URL_ABN || process.env.BASE_URL || 'https://example.com';
     case 'fait':
-      return process.env.BASE_URL_FAIT || 'https://fait.example.com';
+      return process.env.BASE_URL_FAIT || process.env.BASE_URL || 'https://example.com';
     default:
       return process.env.BASE_URL || 'https://example.com';
   }
