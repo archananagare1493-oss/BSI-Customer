@@ -1,0 +1,43 @@
+name: Smoke Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  smoke-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run smoke tests
+        env:
+          TEST_ENV: ${{ secrets.TEST_ENV }}
+          BASE_URL_FAIT: ${{ secrets.BASE_URL_FAIT }}
+          BASE_URL_ABN: ${{ secrets.BASE_URL_ABN }}
+          BASE_URL_PROD: ${{ secrets.BASE_URL_PROD }}
+          USER_NAME_FAIT: ${{ secrets.USER_NAME_FAIT }}
+          USER_NAME_ABN: ${{ secrets.USER_NAME_ABN }}
+          USER_NAME_PROD: ${{ secrets.USER_NAME_PROD }}
+          PASSWORD_FAIT: ${{ secrets.PASSWORD_FAIT }}
+          PASSWORD_ABN: ${{ secrets.PASSWORD_ABN }}
+          PASSWORD_PROD: ${{ secrets.PASSWORD_PROD }}
+        run: npx playwright test src/tests/smoke/smoke.spec.ts --reporter=line
