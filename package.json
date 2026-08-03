@@ -1,0 +1,27 @@
+{
+  "name": "playwrightframed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env playwright test",
+    "test:headed": "cross-env playwright test --headed",
+    "test:debug": "cross-env playwright test --debug",
+    "test:specific": "cross-env playwright test src/tests/testcases/UNEW-567.spec.ts",
+    "setup": "npx playwright install --with-deps",
+    "ci": "npm ci && npm run setup",
+    "postinstall": "npx playwright install --with-deps"
+  },
+  "keywords": [],
+  "author": "Nikhil Pandey",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^25.8.0",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.4.2",
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1"
+  }
+}

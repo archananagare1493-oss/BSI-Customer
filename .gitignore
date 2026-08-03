@@ -1,0 +1,19 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+
+/playwright/.cache/
+/playwright/.auth/
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Ignore all .env files and directories (e.g., .env, .env.local, .env/)
+.env*
